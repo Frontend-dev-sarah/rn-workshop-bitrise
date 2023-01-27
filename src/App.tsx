@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { maxLives, maxQuestions } from './config';
-import { useQuiz } from './utils';
-import { Game, EndGame } from './screens';
+import React, { useCallback, useState } from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { maxLives, maxQuestions } from "./config";
+import { useQuiz } from "./utils";
+import { Game, EndGame } from "./screens";
 
 export default function App() {
   const { questions, reload, isLoading } = useQuiz();
   const [lives, setLives] = useState(maxLives);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [isLifeHelpUsed, setIsLifeHelpUsed] = useState(false);
 
   const handleAnswerSelected = useCallback(
     (answer) => {
@@ -25,6 +26,7 @@ export default function App() {
     setLives(maxLives);
     setCurrentQuestionIndex(0);
     reload();
+    setisLifeHelpUsed(false);
   };
 
   return (
@@ -37,6 +39,8 @@ export default function App() {
           onResetGame={handleResetGame}
           isLoading={isLoading}
           lives={lives}
+          isLifeHelpUsed={isLifeHelpUsed}
+          setIsLifeHelpUsed={setIsLifeHelpUsed}
         />
       )}
 
@@ -54,6 +58,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
   },
 });

@@ -43,7 +43,6 @@ describe("App", () => {
 
     const incorrectButton = getByText("Not really");
     fireEvent.press(incorrectButton);
-
     const hearts = getAllByTestId("heart-full");
     const emptyHearts = getAllByTestId("heart-empty");
     expect(hearts).toHaveLength(maxLives - 1);
@@ -57,5 +56,15 @@ describe("App", () => {
 
     const nextStep = getByTestId("currentStep");
     expect(nextStep.props.children).toEqual(`2 / ${maxQuestions}`);
+  });
+
+  it("should remove half of incorrect answers after the help button used", async () => {
+    const { findAllByTestId, getByTestId } = render(<App />);
+    const buttons = await findAllByTestId(/answer-[0-9]/);
+    expect(buttons).toHaveLength(4);
+    const helpButton = getByTestId("thanos");
+    fireEvent.press(helpButton);
+    const remainingButton = await findAllByTestId(/answer-[0-9]/);
+    expect(remainingButton).toHaveLength(2);
   });
 });
