@@ -54,7 +54,7 @@ const Game = ({
       );
       setIsLifeHelpUsed(true);
     }
-  }, [currentQuestion]);
+  }, [currentQuestion, isLifeHelpUsed]);
 
   return (
     <>
