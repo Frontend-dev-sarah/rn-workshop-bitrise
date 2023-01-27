@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { Button, QuizQuestion } from '../components';
-import { maxLives, maxQuestions } from '../config';
-import { IQuiz } from '../interfaces';
-import { shuffle } from '../utils';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { Icon } from "react-native-elements";
+import { Button, QuizQuestion } from "../components";
+import { maxLives, maxQuestions } from "../config";
+import { IQuiz } from "../interfaces";
+import { shuffle } from "../utils";
 
-interface IProps {
+export interface IProps {
   questions: IQuiz[];
   currentIndex: number;
   handleAnswerSelected: (answer: string) => void;
@@ -54,15 +54,15 @@ const Game = ({
           {`${currentIndex + 1} / ${maxQuestions}`}
         </Text>
         {Array(maxLives)
-          .fill('')
+          .fill("")
           .map((_, i) => (
             <Icon
               key={i}
               name="heart"
               tvParallaxProperties
               type="entypo"
-              testID={`heart-${i < lives ? 'full' : 'empty'}`}
-              color={i < lives ? 'red' : 'white'}
+              testID={`heart-${i < lives ? "full" : "empty"}`}
+              color={i < lives ? "red" : "white"}
               size={40}
             />
           ))}
@@ -87,19 +87,19 @@ const Game = ({
 
 const styles = StyleSheet.create({
   row: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingHorizontal: 15,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   header: {
     fontSize: 50,
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
